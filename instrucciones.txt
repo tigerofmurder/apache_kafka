@@ -19,9 +19,23 @@ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server local
 LIST
 ./bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list
 
-Elimiinar Topic
+Eliminar Topic
 bin/kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic quickstart-events
 
+
+Ejecutar WordCount
+1. Crear wordcount-input topic:
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic wordcount-input --partitions 1 --replication-factor 1
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic wordcount-output --partitions 1 --replication-factor 1
+
+2. Escribir contenido al topic input para cerrar usar Ctrl+c
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic wordcount-input
+
+3. Ejecutar WordCount
+#bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic wordcount-output -- from beginning formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true --property key.deserializer=org.apache kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.seralization.LongDeserializer
+#bin/kafka-run-class.sh org.apache.kafka.streams.examples.wordcount.WordCountDemo
+3.1 java -cp target/kafka-streams-wordcount.jar com.tigerofmurder.examples.streams.wordcount.WordCount
+3.2 bin/kafka-console-consumer.sh --topic wordcount-output --from-beginning --bootstrap-server localhost:9092 --property print.key=true
 
 
 SI ESTAMOS EN WINDOWS ES NECESARIO DESCARGAR LA TERMINAL DE UNA MAQUINA LINUX
