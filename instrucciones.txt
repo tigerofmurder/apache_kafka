@@ -1,0 +1,23 @@
+Ejecutar ZooKepper
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Ejecutar Kafka
+bin/kafka-server-start.sh config/server.properties
+
+Crear un Productor Consumidor
+ Nombre: quickstart-events 
+
+bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092
+
+Consumidor
+bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
+
+Productor
+bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
+
+
+LIST
+./bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list
+
+Elimiinar Topic
+bin/kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic quickstart-events
