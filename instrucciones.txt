@@ -21,3 +21,21 @@ LIST
 
 Elimiinar Topic
 bin/kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic quickstart-events
+
+
+
+SI ESTAMOS EN WINDOWS ES NECESARIO DESCARGAR LA TERMINAL DE UNA MAQUINA LINUX
+1. Abrir PowerShell en modo administrador
+1.1. Ejecutar las siguientes lineas
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+wsl --set-default-version 2
+
+2. Abrir la tienda de Microsoft
+2.1. Buscar Linux
+2.2. Instalar Ubuntu 20.04 LTS
+
+3. Luego Abrir Ubuntu para que se abra la consola
+3.1 ejecutar las siguientes lineas
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt install openjdk-8-jdk -y
